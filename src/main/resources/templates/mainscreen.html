@@ -38,6 +38,12 @@
             <th>Inventory</th>
             <th>Action</th>
         </tr>
+        <tr>
+            <td>Acoustic Guitar</td>
+            <td>$129.99</td>
+            <td>4</td>
+            <td><input type="button" value="Update" id="updateBtn" onClick="#"> <input type="button" value="Delete" id="deletebtn" onClick="#"></td>
+        </tr>
         </thead>
         <tbody>
         <tr th:each="tempPart : ${parts}">
