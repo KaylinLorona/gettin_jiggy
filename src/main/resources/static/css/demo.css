@@ -1,0 +1,10 @@
+body {
+    background-color: #ccffe6;
+    color: #ac00e6;
+}
+
+.container h1 {
+    font-family: Cambria;
+    font-size: 5em;
+    text-align: center;
+}
