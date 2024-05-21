@@ -1,8 +1,8 @@
+/**Main Page**/
 body {
     color: #2d0754;
     background-color: #f2f3fc;
 }
-
 .container h1 {
     font-family: Cambria, serif;
     font-size: 5em;
@@ -14,16 +14,18 @@ body {
     text-align: center;
     font-style: italic;
 }
+/*Main Page about section*/
 .aboutSection {
     text-align: center;
 }
-.about {
+.aboutSection a {
     text-decoration: none;
 }
-.about:hover {
+.aboutSection a:hover {
     font-style: oblique;
     text-decoration: underline;
 }
+/*Main Page Parts and Products*/
 .parts {
     text-align: center;
 }
@@ -36,8 +38,19 @@ body {
 }
 
 
+/*About Page*/
 .aboutPage h1 {
     font-family: Cambria, serif;
     font-size: 5em;
     text-align: center;
+}
+.mainScreen {
+    text-align: center;
+}
+.mainScreen a {
+    text-decoration: none;
+}
+.mainScreen a:hover {
+    font-style: oblique;
+    text-decoration: underline;
 }
