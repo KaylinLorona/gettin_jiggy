@@ -1,21 +1,29 @@
 body {
     color: #2d0754;
-    background-image: url('../music_notes.png');
     background-color: #f2f3fc;
 }
 
 .container h1 {
-    font-family: Cambria;
+    font-family: Cambria, serif;
     font-size: 5em;
     text-align: center;
 }
 .secondName {
-    font-family: Cambria;
+    font-family: Cambria, serif;
     font-size: 3em;
     text-align: center;
     font-style: italic;
 }
-
+.aboutSection {
+    text-align: center;
+}
+.about {
+    text-decoration: none;
+}
+.about:hover {
+    font-style: oblique;
+    text-decoration: underline;
+}
 .parts {
     text-align: center;
 }
@@ -25,4 +33,11 @@ body {
 .search {
     text-align: center;
     font-size: 1em;
+}
+
+
+.aboutPage h1 {
+    font-family: Cambria, serif;
+    font-size: 5em;
+    text-align: center;
 }
