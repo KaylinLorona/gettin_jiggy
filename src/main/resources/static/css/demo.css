@@ -1,10 +1,30 @@
 body {
-    background-color: #ccffe6;
-    color: #ac00e6;
+    color: #2d0754;
+    background-image: url('../music_notes.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .container h1 {
     font-family: Cambria;
     font-size: 5em;
     text-align: center;
+}
+.secondName {
+    font-family: Cambria;
+    font-size: 3em;
+    text-align: center;
+    font-style: italic;
+}
+
+.parts {
+    text-align: center;
+}
+.products {
+    text-align: center;
+}
+.search {
+    text-align: center;
+    font-size: 1em;
 }
