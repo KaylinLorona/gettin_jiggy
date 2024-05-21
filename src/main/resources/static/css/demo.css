@@ -1,9 +1,7 @@
 body {
     color: #2d0754;
     background-image: url('../music_notes.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-color: #f2f3fc;
 }
 
 .container h1 {
