@@ -37,15 +37,17 @@ body {
     font-size: 1em;
 }
 
-
 /*About Page*/
 .aboutPage h1 {
     font-family: Cambria, serif;
     font-size: 5em;
     text-align: center;
+    margin-bottom: 3px;
 }
 .mainScreen {
     text-align: center;
+    font-size: larger;
+    margin-bottom: 3px;
 }
 .mainScreen a {
     text-decoration: none;
@@ -53,4 +55,22 @@ body {
 .mainScreen a:hover {
     font-style: oblique;
     text-decoration: underline;
+}
+.aboutDesc {
+    border: 2px solid #2d0754;
+    padding: 3px;
+}
+/*Image Section on about page*/
+.guitarPics {
+    display: flex;
+}
+.img1 {
+    flex: 33.33%;
+    padding: 5px;
+    width: 30%;
+}
+.img2 {
+    flex: 33.33%;
+    padding: 5px;
+    width: 30%;
 }
