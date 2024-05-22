@@ -1,8 +1,10 @@
 package com.example.demo.bootstrap;
 
+import com.example.demo.domain.InhousePart;
 import com.example.demo.domain.OutsourcedPart;
 import com.example.demo.domain.Part;
 import com.example.demo.domain.Product;
+import com.example.demo.repositories.InhousePartRepository;
 import com.example.demo.repositories.OutsourcedPartRepository;
 import com.example.demo.repositories.PartRepository;
 import com.example.demo.repositories.ProductRepository;
@@ -38,6 +40,42 @@ public class BootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        //Creating object from the Part class
+        InhousePart guitarPick = new InhousePart();
+        InhousePart guitarString = new InhousePart();
+        InhousePart ampCord = new InhousePart();
+        InhousePart guitarBridge = new InhousePart();
+
+        //Setting the values for guitarPick
+        guitarPick.setName("Guitar Pick");
+        guitarPick.setPrice(2.99);
+        guitarPick.setInv(75);
+        //Saving in the repository
+        partRepository.save(guitarPick);
+
+        //Setting the values for guitarString
+        guitarString.setName("Guitar String (4 strings mix & match)");
+        guitarString.setPrice(15.99);
+        guitarString.setInv(100);
+        //Saving in the repository
+        partRepository.save(guitarString);
+
+        //Setting the values for ampCord
+        ampCord.setName("Amp Cord");
+        ampCord.setPrice(10.00);
+        ampCord.setInv(15);
+        //Saving in the repository
+        partRepository.save(ampCord);
+
+        //Setting the values for guitarBridge
+        guitarBridge.setName("Guitar Bridge");
+        guitarBridge.setPrice(9.50);
+        guitarBridge.setInv(20);
+        //Saving in the repository
+        partRepository.save(guitarBridge);
+
+
 
        /*
         OutsourcedPart o= new OutsourcedPart();
