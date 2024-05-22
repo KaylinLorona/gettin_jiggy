@@ -72,42 +72,7 @@
     <a th:href="@{/showFormAddProduct}" class="btn btn-primary btn-sm mb-3">Add Product</a>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Inventory</th>
-            <th>Action</th>
-        </tr>
-        <tr>
-            <td>Acoustic Guitar</td>
-            <td>$129.99</td>
-            <td>4</td>
-            <td><input type="button" value="Update" id="updateBtn" onClick="#"> <input type="button" value="Delete" id="deletebtn" onClick="#"></td>
-        </tr>
-        <tr>
-            <td>Electric Guitar</td>
-            <td>$299.99</td>
-            <td>2</td>
-            <td><input type="button" value="Update" id="updateBtn" onClick="#"> <input type="button" value="Delete" id="deletebtn" onClick="#"></td>
-        </tr>
-        <tr>
-            <td>Four String Bass</td>
-            <td>$179.99</td>
-            <td>5</td>
-            <td><input type="button" value="Update" id="updateBtn" onClick="#"> <input type="button" value="Delete" id="deletebtn" onClick="#"></td>
-        </tr>
-        <tr>
-            <td>Electric Guitar Amp</td>
-            <td>$99.99</td>
-            <td>5</td>
-            <td><input type="button" value="Update" id="updateBtn" onClick="#"> <input type="button" value="Delete" id="deletebtn" onClick="#"></td>
-        </tr>
-        <tr>
-            <td>Electric Bass Amp</td>
-            <td>$99.99</td>
-            <td>3</td>
-            <td><input type="button" value="Update" id="updateBtn" onClick="#"> <input type="button" value="Delete" id="deletebtn" onClick="#"></td>
-        </tr>
+
         </thead>
         <tbody>
         <tr th:each="tempProduct : ${products}">
