@@ -28,6 +28,9 @@ public abstract class Part implements Serializable {
     double price;
     @Min(value = 0, message = "Inventory value must be positive")
     int inv;
+    int minInv;
+    int maxInv;
+
 
     @ManyToMany
     @JoinTable(name="product_part", joinColumns = @JoinColumn(name="part_id"),
@@ -37,22 +40,24 @@ public abstract class Part implements Serializable {
     public Part() {
     }
 
-    public Part(String name, double price, int inv) {
+    public Part(String name, double price, int inv, int minInv, int maxInv) {
         this.name = name;
         this.price = price;
         this.inv = inv;
+        this.minInv = minInv;
+        this.maxInv = maxInv;
     }
 
-    public Part(long id, String name, double price, int inv) {
+    public Part(long id, String name, double price, int inv, int minInv, int maxInv) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.inv = inv;
+        this.minInv = minInv;
+        this.maxInv = maxInv;
     }
 
-    public long getId() {
-        return id;
-    }
+    public long getId() { return id; }
 
     public void setId(long id) {
         this.id = id;
@@ -82,12 +87,29 @@ public abstract class Part implements Serializable {
         this.inv = inv;
     }
 
+    public int getMinInv() { return minInv; }
+
+    public void setMinInv(int minInv) { this.minInv = minInv; }
+
+    public int getMaxInv() { return maxInv; }
+
+    public void setMaxInv(int maxInv) { this.maxInv = maxInv; }
+
     public Set<Product> getProducts() {
         return products;
     }
 
     public void setProducts(Set<Product> products) {
         this.products = products;
+    }
+
+    public void validateInv() {
+        if (this.inv < this.minInv) {
+            throw new RuntimeException("This value falls below required minimum.");
+        }
+        else if (this.inv > this.maxInv) {
+            throw new RuntimeException("This value exceeds the allowed maximum.");
+        }
     }
 
     public String toString(){
@@ -102,6 +124,7 @@ public abstract class Part implements Serializable {
 
         return id == part.id;
     }
+
 
     @Override
     public int hashCode() {
