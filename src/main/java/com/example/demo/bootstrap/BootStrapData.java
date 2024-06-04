@@ -54,6 +54,8 @@ public class BootStrapData implements CommandLineRunner {
             guitarPick.setName("Guitar Pick");
             guitarPick.setPrice(2.99);
             guitarPick.setInv(75);
+            guitarPick.setMinInv(50);
+            guitarPick.setMaxInv(150);
             //Saving in the repository
             partRepository.save(guitarPick);
 
@@ -61,6 +63,8 @@ public class BootStrapData implements CommandLineRunner {
             guitarString.setName("Guitar String (4 strings mix & match)");
             guitarString.setPrice(15.99);
             guitarString.setInv(100);
+            guitarString.setMinInv(75);
+            guitarString.setMaxInv(500);
             //Saving in the repository
             partRepository.save(guitarString);
 
@@ -68,6 +72,8 @@ public class BootStrapData implements CommandLineRunner {
             ampCord.setName("Amp Cord");
             ampCord.setPrice(10.00);
             ampCord.setInv(15);
+            ampCord.setMinInv(5);
+            ampCord.setMaxInv(20);
             //Saving in the repository
             partRepository.save(ampCord);
 
@@ -75,6 +81,8 @@ public class BootStrapData implements CommandLineRunner {
             guitarBridge.setName("Guitar Bridge");
             guitarBridge.setPrice(9.50);
             guitarBridge.setInv(20);
+            guitarBridge.setMinInv(10);
+            guitarBridge.setMaxInv(50);
             //Saving in the repository
             partRepository.save(guitarBridge);
 
@@ -82,6 +90,8 @@ public class BootStrapData implements CommandLineRunner {
             guitarStrap.setName("Guitar Strap");
             guitarStrap.setPrice(10.50);
             guitarStrap.setInv(40);
+            guitarStrap.setMinInv(10);
+            guitarStrap.setMaxInv(45);
             //Saving in the repository
             partRepository.save(guitarStrap);
 
