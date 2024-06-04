@@ -61,5 +61,4 @@ public class InhousePartServiceImpl implements InhousePartService {
         Long theIdl=(long)theId;
         partRepository.deleteById(theIdl);
     }
-
 }
