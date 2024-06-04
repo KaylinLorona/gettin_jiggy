@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.domain.InhousePart;
 import com.example.demo.domain.Part;
 import com.example.demo.domain.Product;
 import com.example.demo.repositories.PartRepository;
@@ -56,6 +57,7 @@ public class PartServiceImpl implements PartService{
 
     @Override
     public void save(Part thePart) {
+            thePart.validateInv();
             partRepository.save(thePart);
 
     }
@@ -65,4 +67,5 @@ public class PartServiceImpl implements PartService{
         Long theIdl=(long)theId;
         partRepository.deleteById(theIdl);
     }
+
 }

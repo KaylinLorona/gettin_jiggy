@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.domain.InhousePart;
 import com.example.demo.domain.OutsourcedPart;
 import com.example.demo.repositories.OutsourcedPartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,7 @@ public class OutsourcedPartServiceImpl implements OutsourcedPartService{
 
     @Override
     public void save(OutsourcedPart thePart) {
+        thePart.validateInv();
         partRepository.save(thePart);
 
     }
