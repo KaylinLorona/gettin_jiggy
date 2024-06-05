@@ -402,6 +402,7 @@ public class MinimumInv implements ConstraintValidator<ValidMinInv, Part> {
     </ul>
 </div>
 ```
+•  Display error messages for low inventory when adding and updating products lowers the part inventory below the minimum.
 - Added validation logic to isValid method in EnufPartsValidatior.java to check for min inventory. Added new block to check for min value of remaining parts after purchase decreases current inv. and added a new error message for insufficient inventory required - line 37-39:
 ```
 if (p.getInv()<(product.getInv()-myProduct.getInv())) {
@@ -410,11 +411,78 @@ constraintValidatorContext.buildConstraintViolationWithTemplate("Inventory is be
 return false;
 };
 ```
-•  Display error messages for low inventory when adding and updating products lowers the part inventory below the minimum.
-
 •  Display error messages when adding and updating parts if the inventory is greater than the maximum.</strong>
+- NEW FILE Created - ValidMaxInv.java - lines 1-24:
+```
+package com.example.demo.validators;
 
+import javax.validation.Constraint;
+import javax.validation.Payload;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
+/**
+ *
+ *
+ *
+ *
+ */
+@Constraint(validatedBy = {MaximumInv.class})
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface ValidMaxInv {
+    String message() default "Inventory exceeds the maximum allowed!";
+    Class<?> [] groups() default {};
+    Class<? extends Payload> [] payload() default {};
+
+}
+```
+- NEW FILE created - MaximumInv.java - lines 1-29:
+```
+package com.example.demo.validators;
+
+import com.example.demo.domain.Part;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
+/**
+ *
+ *
+ *
+ *
+ */
+public class MaximumInv implements ConstraintValidator<ValidMaxInv, Part> {
+    @Autowired
+    private ApplicationContext context;
+    public static  ApplicationContext myContext;
+    @Override
+    public void initialize(ValidMaxInv constraintAnnotation) {
+        ConstraintValidator.super.initialize(constraintAnnotation);
+    }
+
+    @Override
+    public boolean isValid(Part part, ConstraintValidatorContext constraintValidatorContext) {
+        return part.getInv() <= part.getMinInv();
+    }
+}
+```
+- Annotation added to Part.java - line 25:
+```
+@ValidMaxInv
+```
+- Added to the OutsourcedPartForm.html so error message displays on form if below minimum inventory value - line 32-36:
+```
+<div th:if="${#fields.hasErrors()}">
+    <ul>
+        <li th:each="err : ${#fields.allErrors()}" th:text="${err}" class="error"/>
+    </ul>
+</div>
+```
 <strong>I.  Add at least two unit tests for the maximum and minimum fields to the PartTest class in the test package.</strong>
 
 
