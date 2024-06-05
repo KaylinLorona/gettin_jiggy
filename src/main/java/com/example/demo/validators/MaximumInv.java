@@ -24,6 +24,6 @@ public class MaximumInv implements ConstraintValidator<ValidMaxInv, Part> {
 
     @Override
     public boolean isValid(Part part, ConstraintValidatorContext constraintValidatorContext) {
-        return part.getInv() <= part.getMinInv();
+        return part.getInv() <= part.getMaxInv();
     }
 }
