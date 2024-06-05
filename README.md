@@ -330,10 +330,88 @@ thePart.validateInv();
 ```
 thePart.validateInv();
 ```
-
 <strong>H.  Add validation for between or at the maximum and minimum fields. The validation must include the following:
 •  Display error messages for low inventory when adding and updating parts if the inventory is less than the minimum number of parts.
+- NEW FILE Created - ValidMinInv.java - lines 1-24:
+```
+package com.example.demo.validators;
+
+import javax.validation.Constraint;
+import javax.validation.Payload;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/**
+ *
+ *
+ *
+ *
+ */
+@Constraint(validatedBy = {MinimumInv.class})
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface ValidMinInv {
+    String message() default "Inventory is below the minimum required!";
+    Class<?> [] groups() default {};
+    Class<? extends Payload> [] payload() default {};
+
+}
+```
+- NEW FILE created - MinimumInv.java - lines 1-29:
+```
+package com.example.demo.validators;
+
+import com.example.demo.domain.Part;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+/**
+ *
+ *
+ *
+ *
+ */
+public class MinimumInv implements ConstraintValidator<ValidMinInv, Part> {
+    @Autowired
+    private ApplicationContext context;
+    public static  ApplicationContext myContext;
+    @Override
+    public void initialize(ValidMinInv constraintAnnotation) {
+        ConstraintValidator.super.initialize(constraintAnnotation);
+    }
+
+    @Override
+    public boolean isValid(Part part, ConstraintValidatorContext constraintValidatorContext) {
+        return part.getInv() > part.getMinInv();
+    }
+}
+```
+- Annotation added to Part.java - line 23:
+```
+@ValidMinInv
+```
+- Added to the InhousePartForm.html so error message displays on form if below minimum inventory value - line 32-36:
+```
+<div th:if="${#fields.hasErrors()}">
+    <ul>
+        <li th:each="err : ${#fields.allErrors()}" th:text="${err}" class="error"/>
+    </ul>
+</div>
+```
+- Added validation logic to isValid method in EnufPartsValidatior.java to check for min inventory. Added new block to check for min value of remaining parts after purchase decreases current inv. and added a new error message for insufficient inventory required - line 37-39:
+```
+if (p.getInv()<(product.getInv()-myProduct.getInv())) {
+constraintValidatorContext.disableDefaultConstraintViolation();
+constraintValidatorContext.buildConstraintViolationWithTemplate("Inventory is below the minimum required!");
+return false;
+};
+```
 •  Display error messages for low inventory when adding and updating products lowers the part inventory below the minimum.
+
 •  Display error messages when adding and updating parts if the inventory is greater than the maximum.</strong>
 
 
