@@ -149,7 +149,7 @@ Note: Make sure the sample inventory is added only when both the part and produc
 - The 5 parts added were: guitarPick; guitarString; ampCord; guitarBridge; guitarStrap.
 - The 5 products added were: acousticGuitar; electricGuitar; fourStringBass; electricGuitarAmp; electricBassAmp
 - Code lines 41-116:
-```angular2html
+```
 @Override
     public void run(String... args) throws Exception {
 
@@ -484,6 +484,45 @@ public class MaximumInv implements ConstraintValidator<ValidMaxInv, Part> {
 </div>
 ```
 <strong>I.  Add at least two unit tests for the maximum and minimum fields to the PartTest class in the test package.</strong>
+- Added a getMinInv() and setMinInv() test to the PartTest.java - line 160-176:
+```
+@Test
+void getMinInv() {
+int inv=5;
+partIn.setMinInv(inv);
+assertEquals(inv,partIn.getMinInv());
+partOut.setMinInv(inv);
+assertEquals(inv,partOut.getMinInv());
+}
 
+    @Test
+    void setMinInv() {
+        int inv=5;
+        partIn.setMinInv(inv);
+        assertEquals(inv,partIn.getMinInv());
+        partOut.setMinInv(inv);
+        assertEquals(inv,partOut.getMinInv());
+    }
+```
+- Added a getMaxInv() and setMaxInv() test to the PartTest.java - line 178-194
+```
+@Test
+    void getMaxInv() {
+        int inv=5;
+        partIn.setMaxInv(inv);
+        assertEquals(inv,partIn.getMaxInv());
+        partOut.setMaxInv(inv);
+        assertEquals(inv,partOut.getMaxInv());
+    }
+
+    @Test
+    void setMaxInv() {
+        int inv=5;
+        partIn.setMinInv(inv);
+        assertEquals(inv,partIn.getMinInv());
+        partOut.setMinInv(inv);
+        assertEquals(inv,partOut.getMinInv());
+    }
+```
 
 <strong>J.  Remove the class files for any unused validators in order to clean your code.</strong>
