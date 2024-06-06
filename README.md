@@ -12,7 +12,7 @@ Note: Do not remove any elements that were included in the screen. You may add a
     <h1>Gettin Jiggy With It</h1>
     <h2 class="secondName">Guitar Musical Emporium</h2>
     <div class="aboutSection">
-        <a href="/aboutPage.html">About Us</a>
+        <a href="/aboutPage.html"><button>About Us</button></a>
 </div>
 ```
 - Added class names to the Parts h2 and search div - lines 23-24:
@@ -25,7 +25,18 @@ Note: Do not remove any elements that were included in the screen. You may add a
 <h2 class="products">Products</h2>
    <div class="search">
 ````
-- The CSS page was updated to add some styling for the mainscreen and aboutPage. lines 1-76:
+- Added table headers to the product columns - line 81-84:
+```
+<thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Inventory</th>
+            <th>Action</th>
+        </tr>
+        </thead
+```
+- The CSS page was updated to add some styling for the mainscreen and aboutPage. lines 1-84:
 ```
 /**Main Page**/
 body {
@@ -103,6 +114,14 @@ body {
     padding: 5px;
     width: 30%;
 }
+
+/*Purchase Failed and Confirmation Purchase*/
+.failed {
+    text-align: center;
+}
+.confirmed {
+    text-align: center;
+}
 ```
 
 <strong>D.  Add an “About” page to the application to describe your chosen customer’s company to web viewers and include navigation to and from the “About” page and the main screen.</strong>
@@ -139,7 +158,7 @@ body {
 - A link connecting the aboutPage.html to the mainscreen.html was added - lines 10-12:
 ```
 <div class="mainScreen">
-        <a href="mainscreen">Main Screen</a>
+        <a href="mainscreen"><button>Main Screen</button></a>
     </div>
 ```
 <strong>E.  Add a sample inventory appropriate for your chosen store to the application. You should have five parts and five products in your sample inventory and should not overwrite existing data in the database.
@@ -242,7 +261,7 @@ Note: Make sure the sample inventory is added only when both the part and produc
         ProductService productService = context.getBean(ProductServiceImpl.class);
         Product product2=productService.findById(theId);
         if (product2.getInv() < 1) {
-            return "purchasedfailed";
+            return "purchasefailed";
         }
         product2.setInv(product2.getInv() - 1);
         productService.save(product2);
@@ -256,15 +275,16 @@ Note: Make sure the sample inventory is added only when both the part and produc
 <html lang="en">
 <head>
 <!--    <meta charset="UTF-8">-->
-    <meta http-equiv="refresh"
-          content="0;URL='mainscreen'">
+    <meta http-equiv="refresh">
+    <link rel="stylesheet" href="css/demo.css">
     <title>Title</title>
 </head>
 <body>
-<h1>Purchase Failed</h1>
+<div class="failed">
+    <h1>There is no inventory. Purchase has failed.  Try adding inventory and attempting the purchase again. Thank you!</h1>
 
-<a href="http://localhost:8080/">Link
-    to Main Screen</a>
+    <a href="http://localhost:8080/"><button>Return to Main Screen</button></a>
+</div>
 </body>
 </html>
 ```
@@ -274,15 +294,15 @@ Note: Make sure the sample inventory is added only when both the part and produc
 <html lang="en">
 <head>
 <!--    <meta charset="UTF-8">-->
-    <meta http-equiv="refresh"
-          content="0;URL='mainscreen'">
+    <meta http-equiv="refresh">
+    <link rel="stylesheet" href="css/demo.css">
     <title>Title</title>
 </head>
 <body>
-<h1>Purchase Successful. Inventory has been reduced by 1.</h1>
-
-<a href="http://localhost:8080/">Link
-    to Main Screen</a>
+<div class="confirmed">
+    <h1>Purchase was Successful. Inventory has been reduced by 1.</h1>
+    <a href="http://localhost:8080/"><button>Return to Main Screen</button></a>
+</div>
 </body>
 </html>
 ```
