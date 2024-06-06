@@ -56,9 +56,14 @@ body {
     font-style: oblique;
     text-decoration: underline;
 }
+.mainScreen button {
+    margin-bottom: 5px;
+}
 .aboutDesc {
     border: 2px solid #2d0754;
-    padding: 3px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 /*Image Section on about page*/
 .guitarPics {
@@ -68,11 +73,13 @@ body {
     flex: 33.33%;
     padding: 5px;
     width: 30%;
+    height: 600px;
 }
 .img2 {
     flex: 33.33%;
     padding: 5px;
     width: 30%;
+    height: 600px;
 }
 
 /*Purchase Failed and Confirmation Purchase*/
@@ -80,5 +87,13 @@ body {
     text-align: center;
 }
 .confirmed {
+    text-align: center;
+}
+
+/*InhousePartForm and OutsourcedPartForm*/
+.outsource {
+    text-align: center;
+}
+.inhouse {
     text-align: center;
 }
