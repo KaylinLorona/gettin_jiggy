@@ -3,10 +3,11 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/demo.css">
     <title>Part Form</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
-<body>
+<body class="outsource">
 <h1>Outsourced Part Detail</h1>
 
 <form action="#" th:action="@{/showFormAddOutPart}" th:object="${outsourcedpart}" method="POST"}>
@@ -39,7 +40,6 @@
 
 <p><input type="submit" value="Submit" /></p>
 </form>
-<a href="http://localhost:8080/">Link
-    to Main Screen</a>
+<a href="http://localhost:8080/"><button>Return to Main Screen</button></a>
 </body>
 </html>
