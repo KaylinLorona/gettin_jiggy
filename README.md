@@ -36,7 +36,7 @@ Note: Do not remove any elements that were included in the screen. You may add a
         </tr>
         </thead
 ```
-- The CSS page was updated to add some styling for the mainscreen and aboutPage. lines 1-84:
+- The CSS page was updated to add some styling for the mainscreen and aboutPage. lines 1-99:
 ```
 /**Main Page**/
 body {
@@ -96,9 +96,14 @@ body {
     font-style: oblique;
     text-decoration: underline;
 }
+.mainScreen button {
+    margin-bottom: 5px;
+}
 .aboutDesc {
     border: 2px solid #2d0754;
-    padding: 3px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 /*Image Section on about page*/
 .guitarPics {
@@ -108,11 +113,13 @@ body {
     flex: 33.33%;
     padding: 5px;
     width: 30%;
+    height: 600px;
 }
 .img2 {
     flex: 33.33%;
     padding: 5px;
     width: 30%;
+    height: 600px;
 }
 
 /*Purchase Failed and Confirmation Purchase*/
@@ -122,6 +129,20 @@ body {
 .confirmed {
     text-align: center;
 }
+```
+- Linked styling sheet to InhousePartForm.html and OutsourcedPartForm.html and updated main screen links to buttons - InhousePartForm.html line 6 & 43
+```
+<link rel="stylesheet" href="/css/demo.css">
+```
+```
+<a href="http://localhost:8080/"><button>Return to Main Screen</button></a>
+```
+OutsourcedForm.html line 6 & 43
+```
+<link rel="stylesheet" href="/css/demo.css">
+```
+```
+<a href="http://localhost:8080/"><button>Return to Main Screen</button></a>
 ```
 
 <strong>D.  Add an “About” page to the application to describe your chosen customer’s company to web viewers and include navigation to and from the “About” page and the main screen.</strong>
