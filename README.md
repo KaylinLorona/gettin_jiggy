@@ -268,7 +268,7 @@ Note: Make sure the sample inventory is added only when both the part and produc
 </body>
 </html>
 ```
-- the confirmationbuynow.html was added to the Templates. This HTML contains a message confirming the purchase was successful and that the inventory has been reduced by 1 - lines1-15:
+- NEW FILE confirmationbuynow.html was added to the Templates. This HTML contains a message confirming the purchase was successful and that the inventory has been reduced by 1 - lines1-15:
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -288,7 +288,7 @@ Note: Make sure the sample inventory is added only when both the part and produc
 ```
 <strong>G.  Modify the parts to track maximum and minimum inventory by doing the following:
 - Added minInv and maxInv int's to Part.java - lines 31-32:
-```angular2html
+```
 int minInv;
 int maxInv;
 ```
@@ -302,6 +302,28 @@ public int getMinInv() { return minInv; }
 
     public void setMaxInv(int maxInv) { this.maxInv = maxInv; }
 ```
+Added fields to the InhousPartForm.html and the OutsourcedPartForm.html to have additional text input fields for the user to set the min and max inventory - InhousePartForm.html lines 26-30
+```
+<p> <input type="text" path="minInv" th:field="*{minInv}" placeholder="Minimum Inventory" class="form-control mb-4 col-4"/></p>
+    <p th:if="${#fields.hasErrors('minInv')}" th:errors="*{minInv}">Minimum Inventory Error </p>
+
+<p> <input type="text" path="maxInv" th:field="*{maxInv}" placeholder="Max Inventory" class="form-control mb-4 col-4"/></p>
+    <p th:if="${#fields.hasErrors('maxInv')}" th:errors="*{maxInv}">Max Inventory Error.</p>
+```
+-OutsourcedPartForm.html line 27-31:
+```
+<p> <input type="text" path="minInv" th:field="*{minInv}" placeholder="Minimum Inventory" class="form-control mb-4 col-4"/></p>
+    <p th:if="*{#fields.hasErrors('minInv')}" th:errors="*{minInv}">Minimum Inventory Error </p>
+
+<p> <input type="text" path="maxInv" th:field="*{maxInv}" placeholder="Max Inventory" class="form-control mb-4 col-4"/></p>
+    <p th:if="*{#fields.hasErrors('maxInv')}" th:errors="*{maxInv}">Max Inventory Error </p>
+
+```
+- Renamed the persistent storage to include student id at end - line 6:
+```
+spring.datasource.url=jdbc:h2:file:~/spring-boot-h2-db102_010546727_2
+```
+
 - Created validateInv method in Part.java to determine if inventory is below min or above max - lines 106-113:
 ```
 public void validateInv() {
@@ -316,7 +338,7 @@ public void validateInv() {
 - Modify the sample inventory to include the maximum and minimum fields. For EACH of the 5 parts a min and max inventory was set. '*' to represent the names for each part and the following code added to each part in BootStrapData.java - lines 57-58; 66-67; 75-76; 84-85; 93-94:
 ```angular2html
 *.setMinInv(10);
-    guitarStrap.setMaxInv(45);
+    *.setMaxInv(45);
 ```
 - Added the following code to the OutsourcedPartServiceImpl.java - line 53:
 ```
@@ -332,7 +354,7 @@ thePart.validateInv();
 ```
 <strong>H.  Add validation for between or at the maximum and minimum fields. The validation must include the following:
 •  Display error messages for low inventory when adding and updating parts if the inventory is less than the minimum number of parts.
-- NEW FILE Created - ValidMinInv.java - lines 1-24:
+- NEW FILE Created - ValidMinInv.java to contain custom message with inventory is too low - lines 1-24:
 ```
 package com.example.demo.validators;
 
@@ -412,7 +434,7 @@ return false;
 };
 ```
 •  Display error messages when adding and updating parts if the inventory is greater than the maximum.</strong>
-- NEW FILE Created - ValidMaxInv.java - lines 1-24:
+- NEW FILE Created - ValidMaxInv.java contains custom message when inventory exceeds the max - lines 1-24:
 ```
 package com.example.demo.validators;
 
@@ -526,3 +548,4 @@ assertEquals(inv,partOut.getMinInv());
 ```
 
 <strong>J.  Remove the class files for any unused validators in order to clean your code.</strong>
+- deleted DeleatedPartValidator.java as it had no usages.
