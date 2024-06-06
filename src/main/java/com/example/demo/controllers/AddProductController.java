@@ -132,7 +132,7 @@ public class AddProductController {
         ProductService productService = context.getBean(ProductServiceImpl.class);
         Product product2=productService.findById(theId);
         if (product2.getInv() < 1) {
-            return "purchasedfailed";
+            return "purchasefailed";
         }
         product2.setInv(product2.getInv() - 1);
         productService.save(product2);
