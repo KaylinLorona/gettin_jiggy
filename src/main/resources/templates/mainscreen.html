@@ -17,7 +17,7 @@
     <h1>Gettin Jiggy With It</h1>
     <h2 class="secondName">Guitar Musical Emporium</h2>
     <div class="aboutSection">
-        <a href="/aboutPage.html">About Us</a>
+        <a href="/aboutPage.html"><button>About Us</button></a>
     </div>
     <hr>
     <h2 class="parts">Parts</h2>
@@ -77,7 +77,12 @@
     <a th:href="@{/showFormAddProduct}" class="btn btn-primary btn-sm mb-3">Add Product</a>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
-
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Inventory</th>
+            <th>Action</th>
+        </tr>
         </thead>
         <tbody>
         <tr th:each="tempProduct : ${products}">
