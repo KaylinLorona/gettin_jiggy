@@ -422,7 +422,8 @@ public @interface ValidMinInv {
 
 }
 ```
-- NEW FILE created - MinimumInv.java - lines 1-29:
+- NEW FILE created - MinimumInv.java - lines 1-29 
+- **Adjusted 6/8 to show greater than OR equal to in isValid (line 26):
 ```
 package com.example.demo.validators;
 
@@ -449,7 +450,7 @@ public class MinimumInv implements ConstraintValidator<ValidMinInv, Part> {
 
     @Override
     public boolean isValid(Part part, ConstraintValidatorContext constraintValidatorContext) {
-        return part.getInv() > part.getMinInv();
+        return part.getInv() >= part.getMinInv();
     }
 }
 ```
@@ -473,6 +474,31 @@ constraintValidatorContext.disableDefaultConstraintViolation();
 constraintValidatorContext.buildConstraintViolationWithTemplate("Inventory is below the minimum required!");
 return false;
 };
+```
+- Added validation logic to the associatePart section to check if the inventory for the product being updated exceeds the associated part's minimum inventory - Line 154-169:
+```
+else {
+            Part selectedPart = partService.findById(theID);
+
+            // Check if the product inventory is greater than the part inventory
+            if (product1.getInv() > selectedPart.getMinInv()) {
+                // Add an error message to the model and return to the form
+                theModel.addAttribute("error", "Product inventory exceeds minimum inventory for part. Please select a different part or reduce the product inventory.");
+                theModel.addAttribute("product", product1);
+                theModel.addAttribute("assparts", product1.getParts());
+                List<Part> availParts = new ArrayList<>();
+                for (Part p : partService.findAll()) {
+                    if (!product1.getParts().contains(p)) availParts.add(p);
+                }
+                theModel.addAttribute("availparts", availParts);
+                return "productForm";
+            }
+```
+- Error message displayed on Product Form when the associated part's minimum inventory falls below the current inventory of the product being updated - Line 30-32:
+```
+<div th:if="${error}" >
+        <p th:text="${error}"></p>
+</div>
 ```
 •  Display error messages when adding and updating parts if the inventory is greater than the maximum.</strong>
 - NEW FILE Created - ValidMaxInv.java contains custom message when inventory exceeds the max - lines 1-24:
