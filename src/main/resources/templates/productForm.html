@@ -27,6 +27,9 @@
     </div>
     </p>
     <p><input type="submit" value="Submit" /></p>
+    <div th:if="${error}" >
+        <p th:text="${error}"></p>
+    </div>
 </form>
 
 
